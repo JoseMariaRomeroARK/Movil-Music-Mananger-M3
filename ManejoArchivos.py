@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+# @author JoseMariaRomeroARK visit my gitHub site at: https://github.com/JoseMariaRomeroARK
 
 def buscarDirectorio():
     from tkinter import Tk, filedialog
