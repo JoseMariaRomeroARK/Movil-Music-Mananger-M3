@@ -2,13 +2,14 @@
 # @author JoseMariaRomeroARK visit my gitHub site at: https://github.com/JoseMariaRomeroARK
 
 from tkinter import *
-import Utilidades, ManejoArchivos
-from VentanaMain import createNewMain
 
 Constante_WARNING = "Please use these wisely do not touch if you do not understand it."
 Constante_FILL = "Choose a directory..."
 
 def createNew(valDestino,valOrigen):
+
+    import Utilidades, ManejoArchivos
+    from VentanaMain import createNewMain
     def rellenarEntry(var):
         var.set(ManejoArchivos.buscarDirectorio())
 
