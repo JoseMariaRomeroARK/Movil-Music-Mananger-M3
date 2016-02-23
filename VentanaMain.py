@@ -1,8 +1,9 @@
 # -*- coding: UTF-8 -*-
 from tkinter import *
-import Utilidades , VentanAux
+import Utilidades
 import os, shutil, threading
-listaFormatos =[".mp3",".aac",".m4a",".mp4",".wma",".wav",".atrac",".m4p",".m3p",".midi",".oog"]
+from VentanAux import createNew
+listaFormatos =[".mp3",".aac",".m4a",".mp4",".wma",".wav",".atrac",".m4p",".m3p",".flac",".midi",".oog"]
 
 ruta = Utilidades.getRuta()
 
@@ -53,22 +54,26 @@ def createNewMain(lista):
     def cambiar_a_rojo():
          Ocupado.set(True)
          imagenLB.config(image=rj)
+         ventana.title("Movile Music Mananger (M3)")
 
     #Cambia el color del indicador de estado a verde (libre)
     def cambiar_a_verde():
         Ocupado.set(False)
         imagenLB.config(image=vrd)
+        ventana.title("Movile Music Mananger (M3)")
 
     #Corre un Thread que copia el/los archivos seleccionados
     def ThreadCopiar(Marcador,ListboxOrig,ListboxDest,dirOrig,dirDest):
         if not Ocupado.get():
             cambiar_a_rojo()
+            ventana.title("Movile Music Mananger (M3) - Copying...")
             threading.Thread(target=copiar,args=(Marcador,ListboxOrig,ListboxDest,dirOrig,dirDest,)).start()
 
     #Corre un Thread que borra el/los archivos seleccionados
     def ThreadBorrar(Marcador,ListboxOrig,ListboxDest,dirOrig,dirDest):
          if not Ocupado.get():
             cambiar_a_rojo()
+            ventana.title("Movile Music Mananger (M3) - Removeing...")
             threading.Thread(target=borrar,args=(ListboxOrig,ListboxDest,dirOrig,dirDest,)).start()
 
     #comoponetes de la interfaz
@@ -144,7 +149,7 @@ def createNewMain(lista):
 def cambioValores(Ocupado,ventana,valDestino,valOrigen):
     if not Ocupado.get():
         ventana.destroy()
-        VentanAux.createNew(valDestino,valOrigen)
+        createNew(valDestino,valOrigen)
 
 #Recopilamos los items de cada conjunto
 def rellenar(ListboxOrig,ListboxDest,dirOrig,dirDest):
@@ -160,7 +165,7 @@ def rellenar(ListboxOrig,ListboxDest,dirOrig,dirDest):
                         ListaObjetosOrigenFiltrados.append(item)
                         break
             else:
-                ListaCarpetas.append("Carpeta: "+item)
+                ListaCarpetas.append("Folder: "+item)
 
         #Lo que hay en el destino de datos (B)
         ListaObjetosDestinoFiltrados = list()
