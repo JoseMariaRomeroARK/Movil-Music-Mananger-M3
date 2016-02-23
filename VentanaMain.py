@@ -23,13 +23,13 @@ def createNewMain(lista):
         try:
             for seleccionado in ListboxOrig.curselection()[::-1]:
                 nombre = ListboxOrig.get(seleccionado)
-                print("Copiando: "+nombre)
+                print("Copying: "+nombre)
                 shutil.copyfile(dirOrig+"/"+nombre,dirDest+"/"+nombre)
                 ListboxOrig.delete(seleccionado)
                 ListboxDest.insert(END,nombre)
-                print("Copianda")
+                print("Copied")
         except:
-            print("Error en alchivo, quizás estes intentando copiar una carpeta.")
+            print("File error, maybe you are tring to copy a folder.")
         finally:
             cambiar_a_verde()
 
@@ -39,13 +39,13 @@ def createNewMain(lista):
         try:
             for seleccionado in ListboxDest.curselection()[::-1]:
                 nombre = ListboxDest.get(seleccionado)
-                print("Borrando: "+nombre)
+                print("Removeing: "+nombre)
                 os.remove(dirDest+"/"+nombre)
                 ListboxDest.delete(seleccionado)
                 ListboxOrig.insert(END,nombre)
-                print("Borrada")
+                print("Removed")
         except:
-            print("Error en alchivo")
+            print("File error")
         finally:
             cambiar_a_verde()
 
@@ -78,15 +78,15 @@ def createNewMain(lista):
     varDestino = StringVar(value=lista[2])
 
     #Fila 0:
-    lblOrigen= Label(marco,text="Origen: ")
+    lblOrigen= Label(marco,text="Origin: ")
     imagenLB = Label(marco,image=vrd)
-    lblDestino= Label(marco,text="Destino: ")
+    lblDestino= Label(marco,text="Destination: ")
 
 
 
     #Fila 2:
-    botonCambiarO = Button(marco,text="Cambiar Origen",command= lambda: cambioValores(Ocupado,ventana,varDestino.get(),varOrigen.get()))
-    botonCambiarD = Button(marco,text="Cambiar Destino",command= lambda: cambioValores(Ocupado,ventana,varDestino.get(),varOrigen.get()))
+    botonCambiarO = Button(marco,text="Change origin",command= lambda: cambioValores(Ocupado,ventana,varDestino.get(),varOrigen.get()))
+    botonCambiarD = Button(marco,text="Change destination",command= lambda: cambioValores(Ocupado,ventana,varDestino.get(),varOrigen.get()))
 
     #Fila 3:
     marcoOrigen = Frame(marco)
@@ -195,4 +195,4 @@ def rellenar(ListboxOrig,ListboxDest,dirOrig,dirDest):
                 ListboxOrig.insert(END,cancion)
 
     except:
-        print("Error\nDirectorio Origen: "+dirOrig+"\nDirectorio Destino: "+dirDest)
+        print("Error\nOrigin directory: "+dirOrig+"\nDestination directory: "+dirDest)
